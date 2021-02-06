@@ -2,6 +2,7 @@ package com.example.flixster.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
 
@@ -86,7 +88,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageUrl = movie.getPosterPath();
             }
 
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl).placeholder(R.drawable.hourglass)   // for placeholder, it should be local, NOT too large
+                    .error(R.drawable.imagenotfound).into(ivPoster);
         }
     }
 }
